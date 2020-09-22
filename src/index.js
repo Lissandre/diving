@@ -1,11 +1,10 @@
 import * as THREE from 'three'
+import breathe from './sounds/breatheScuba.mp3'
 // import {OrbitControls} from '../../node_modules/three/examples/jsm/controls/OrbitControls'
 import { gsap, TweenMax } from "gsap"
 
 import './css/style.styl'
 import './js/Intro.js'
-import './js/Sounds.js'
-
 
 /**
 * Sizes
@@ -122,7 +121,42 @@ document.addEventListener('mousewheel', (e)=>{
       y: camera.position.y + e.wheelDeltaY/20,
     });
   }
+  amp.gain.setValueAtTime(Math.abs((camera.position.y/2500))*1+0.05, context.currentTime)
+  ampnoise.gain.setValueAtTime(Math.abs((camera.position.y/2500))*0.21+0.02, context.currentTime)
+  console.log(camera.position.y)
 })
+/**
+ * Sounds
+ */
+const BaseAudioContext = window.AudioContext || window.webkitAudioContext
+const context = new BaseAudioContext()
+const amp = context.createGain()
+amp.gain.setValueAtTime(0.05, context.currentTime)
+setInterval(()=>{playOscillator(context.currentTime, context.currentTime+0.05)}, 2500)
+setInterval(()=>{playOscillator(context.currentTime+0.38, context.currentTime+0.43)}, 2500)
+function playOscillator(startTime, endTime) {
+  const oscillatorHeart = context.createOscillator();
+  oscillatorHeart.frequency.value = 10
+  oscillatorHeart.connect(amp).connect(context.destination);
+  oscillatorHeart.start(startTime);
+  oscillatorHeart.stop(endTime);
+}
+document.querySelector('#beginButton').addEventListener('click', ()=>{setTimeout(() => {startOscillo()}, 2000)})
+function startBreathe(){
+  // let breathesound = new Audio(breathe)
+  // breathesound.loop = true
+  // setTimeout(() => {breathesound.play()}, 4000)
+}
+startBreathe()
+const ampnoise = context.createGain()
+ampnoise.gain.setValueAtTime(0.02, context.currentTime)
+function startOscillo(){
+  const oscillator = context.createOscillator()
+  oscillator.frequency.value = 45
+  oscillator.connect(ampnoise).connect(context.destination)
+  oscillator.start()
+}
+
 // const controls = new OrbitControls(camera, document.querySelector('canvas'));
 // controls.target.set(0, 0, 0);
 // controls.update();
