@@ -1,17 +1,51 @@
 *
-    margin: 0
-    padding: 0
+    margin 0
+    padding 0
 
 html, body
-    position: fixed
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
 
 canvas
-    position: absolute
-    top: 0
-    left: 0
-    width: 100%
-    height: 100%
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    z-index -1
+
+button
+  position absolute
+  top 0
+  left 0
+  z-index 10
+
+#intro
+  position absolute
+  width 100%
+  height 100%
+  top 0
+  left 0
+  background #000
+  display flex
+  justify-content center
+  align-items center
+  transition 0.32s linear opacity
+
+#introSentences
+  color #ffffff
+  font-size 40px
+  font-family sans-serif
+  transition 0.8s linear opacity
+  opacity 0
+
+#beginButton
+  color #ffffff
+  font-size 40px
+  font-family sans-serif
+  border 2px solid #ffffff
+  padding 10px 20px
+  cursor pointer

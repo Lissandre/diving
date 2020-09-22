@@ -6,7 +6,7 @@ module.exports = {
     devtool: 'source-map',
     plugins:
     [
-        new CopyWebpackPlugin([ { from: 'static' } ]),
+        new CopyWebpackPlugin({patterns:[ { from: 'static', to: 'dist' } ]}),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, '../src/index.html')
         })
@@ -61,7 +61,20 @@ module.exports = {
                 [
                     'html-loader'
                 ]
-            }
+            },
+            {
+              test: /\.(ogg|mp3|wav|mpe?g)$/,
+              use:
+              [
+                  {
+                      loader: 'file-loader',
+                      options:
+                      {
+                          outputPath: 'assets/audios/'
+                      }
+                  }
+              ]
+          },
         ]
     }
 }
