@@ -25,6 +25,11 @@ window.addEventListener('resize', () =>
  */
 const scene = new THREE.Scene()
 /**
+ * HUD
+ */
+const depthMeter = document.querySelector('#depth')
+const pressureMeter = document.querySelector('#pressure')
+/**
  * Camera
  */
 let windowWidth = window.innerWidth
@@ -100,30 +105,37 @@ document.addEventListener('keypress', (e) =>
   if((e.key === "s" || e.key === "S") && camera.position.y > -2500) {
     TweenMax.to(camera.position, {
       duration: 0.3,
-      y: camera.position.y - 15,
+      y: (camera.position.y - 15 < -2500) ? -2500 : camera.position.y - 15,
     });
   }else if((e.key === "z" || e.key === "Z") && camera.position.y < 0) {
     TweenMax.to(camera.position, {
       duration: 0.3,
-      y: camera.position.y + 15,
+      y: ( camera.position.y + 15 ) > 0 ? 0 : camera.position.y + 15,
     });
   }
+  amp.gain.setValueAtTime(Math.abs((camera.position.y/2500))*1+0.05, context.currentTime)
+  ampnoise.gain.setValueAtTime(Math.abs((camera.position.y/2500))*0.21+0.02, context.currentTime)
+  depthMeter.innerHTML = `${(camera.position.y/2500*100).toFixed(1)}m`
+  const bar = Math.floor(camera.position.y/-2500*10)%10+1
+  pressureMeter.innerHTML = `${bar} bar${bar>1?'s':''}`
 })
 document.addEventListener('mousewheel', (e)=>{
   if (e.wheelDeltaY>0 && camera.position.y < 0) {
     TweenMax.to(camera.position, {
       duration: 0.3,
-      y: camera.position.y + e.wheelDeltaY/20,
+      y: ( camera.position.y + e.wheelDeltaY/20 ) > 0 ? 0 : camera.position.y + e.wheelDeltaY/20 ,
     });
   }else if (e.wheelDeltaY<0 && camera.position.y > -2500) {
     TweenMax.to(camera.position, {
       duration: 0.3,
-      y: camera.position.y + e.wheelDeltaY/20,
+      y: (camera.position.y + e.wheelDeltaY/20) < -2500 ? -2500 : camera.position.y + e.wheelDeltaY/20,
     });
   }
   amp.gain.setValueAtTime(Math.abs((camera.position.y/2500))*1+0.05, context.currentTime)
   ampnoise.gain.setValueAtTime(Math.abs((camera.position.y/2500))*0.21+0.02, context.currentTime)
-  console.log(camera.position.y)
+  depthMeter.innerHTML = `${(camera.position.y/2500*100).toFixed(1)}m`
+  const bar = Math.floor(camera.position.y/-2500*10)%10+1
+  pressureMeter.innerHTML = `${bar} bar${bar>1?'s':''}`
 })
 /**
  * Sounds

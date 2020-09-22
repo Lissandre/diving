@@ -3,11 +3,11 @@ import groanSound from '../sounds/groan.wav'
 
 const $intro = document.querySelector('#intro'), $introContent = intro.querySelector('#introSentences'), $startBtn = intro.querySelector('#beginButton')
 const sentences = [
-  // 'Dans un monde où le bruit reigne',
-  // 'Imaginez nne serait-ce qu\'un instant...',
-  // 'Le calme des profondeurs'
-  'Phrase intro 1',
-  'Phrase intro 2'
+  'Dans un monde où le bruit reigne',
+  'Imaginez ne serait-ce qu\'un instant...',
+  'Le calme des profondeurs'
+  // 'Phrase intro 1',
+  // 'Phrase intro 2'
 ]
 let sIndex = 0
 function circleTexts() {
