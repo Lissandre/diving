@@ -23,7 +23,7 @@ function circleTexts() {
       
       setTimeout(() => {
         $intro.style.display = 'none'
-        clearInterval(interval)
+        // clearInterval(interval)
     }, 500)
   }
 }
