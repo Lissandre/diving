@@ -32,6 +32,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "gsap": "^3.5.1",
     "postprocessing": "^6.17.3"
   }
 }

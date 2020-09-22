@@ -20,6 +20,7 @@ function circleTexts() {
       sIndex += 1
   } else {
       $intro.style.opacity = '0'
+      
       setTimeout(() => {
         $intro.style.display = 'none'
         clearInterval(interval)
@@ -27,13 +28,23 @@ function circleTexts() {
   }
 }
 let interval = null
-
+function startOscillo(){
+  const BaseAudioContext = window.AudioContext || window.webkitAudioContext
+  const context = new BaseAudioContext()
+  const oscillator = context.createOscillator()
+  oscillator.frequency.value = 45
+  const amp = context.createGain()
+  amp.gain.setValueAtTime(0.1, context.currentTime)
+  oscillator.connect(amp).connect(context.destination)
+  oscillator.start()
+}
 $startBtn.addEventListener('click', () => {
     $startBtn.style.display = 'none'
     interval = setInterval(() => circleTexts(), 2500)
     circleTexts()
     let drownsound = new Audio(drownSound)
     setTimeout(() => {drownsound.play()}, 1465)
+    setTimeout(() => {startOscillo()}, 2000)
     let groansound = new Audio(groanSound)
     setTimeout(() => {groansound.play()}, 4700)
 })
