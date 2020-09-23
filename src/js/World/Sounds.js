@@ -1,3 +1,17 @@
+import Whale from '../../sounds/whale.wav'
+import Exhale00 from '../../sounds/exhale/exhale00.mp3'
+import Exhale01 from '../../sounds/exhale/exhale01.mp3'
+import Exhale02 from '../../sounds/exhale/exhale02.mp3'
+import Exhale03 from '../../sounds/exhale/exhale03.mp3'
+import Exhale04 from '../../sounds/exhale/exhale04.mp3'
+import Exhale05 from '../../sounds/exhale/exhale05.mp3'
+import Exhale06 from '../../sounds/exhale/exhale06.mp3'
+import Exhale07 from '../../sounds/exhale/exhale07.mp3'
+import Exhale08 from '../../sounds/exhale/exhale08.mp3'
+import Exhale09 from '../../sounds/exhale/exhale09.mp3'
+import Exhale10 from '../../sounds/exhale/exhale10.mp3'
+import Inhale00 from '../../sounds/inhale/detendeur00.mp3'
+import Inhale01 from '../../sounds/inhale/detendeur01.mp3'
 export default class Sounds
 {
   constructor(_options){
@@ -10,6 +24,8 @@ export default class Sounds
     this.amp = this.context.createGain()
 
     this.setHeartbeat()
+    this.setWhaleSound()
+    this.setBreathe()
   }
   setHeartbeat(){
     setInterval(()=>{
@@ -37,6 +53,34 @@ export default class Sounds
       45
     )
   }
+  setWhaleSound(){
+    this.whalesound = new Audio(Whale)
+    setTimeout(()=>{
+        this.whalesound.play()
+        this.setWhaleSound()
+      },
+      Math.random()*60000+60000
+    )
+  }
+  setBreathe(){
+    this.inhaleSounds = [ new Audio(Inhale00), new Audio(Inhale01) ]
+    this.exhaleSounds = [ new Audio(Exhale00), new Audio(Exhale01), new Audio(Exhale02), new Audio(Exhale03), new Audio(Exhale04), new Audio(Exhale05), new Audio(Exhale06), new Audio(Exhale07), new Audio(Exhale08), new Audio(Exhale09), new Audio(Exhale10) ]
+    setInterval(()=>{
+      this.ins = this.inhaleSounds[Math.floor(Math.random()*this.inhaleSounds.length)]
+      this.ins.volume = 0.2
+      this.ins.play()
+    },
+    6000)
+    setInterval(()=>{
+      setTimeout(()=>{
+        this.exs = this.exhaleSounds[Math.floor(Math.random()*this.exhaleSounds.length)]
+        this.exs.volume = 1.2
+        this.exs.play()
+      },
+      2000)
+    },
+    6000)
+  }
   playOscillator(start, end, gain, frequency){
     this.oscillator = this.context.createOscillator()
     this.oscillator.frequency.value = frequency
@@ -48,34 +92,3 @@ export default class Sounds
     }
   }
 }
-/**
- * Sounds
- */
-// const BaseAudioContext = window.AudioContext || window.webkitAudioContext
-// const context = new BaseAudioContext()
-// const amp = context.createGain()
-// amp.gain.setValueAtTime(0.05, context.currentTime)
-// setInterval(()=>{playOscillator(context.currentTime, context.currentTime+0.05)}, 2500)
-// setInterval(()=>{playOscillator(context.currentTime+0.38, context.currentTime+0.43)}, 2500)
-// function playOscillator(startTime, endTime) {
-//   const oscillatorHeart = context.createOscillator();
-//   oscillatorHeart.frequency.value = 10
-//   oscillatorHeart.connect(amp).connect(context.destination);
-//   oscillatorHeart.start(startTime);
-//   oscillatorHeart.stop(endTime);
-// }
-// document.querySelector('#beginButton').addEventListener('click', ()=>{setTimeout(() => {startOscillo()}, 2000)})
-// function startBreathe(){
-  // let breathesound = new Audio(breathe)
-  // breathesound.loop = true
-  // setTimeout(() => {breathesound.play()}, 4000)
-// }
-// startBreathe()
-// const ampnoise = context.createGain()
-// ampnoise.gain.setValueAtTime(0.02, context.currentTime)
-// function startOscillo(){
-//   const oscillator = context.createOscillator()
-//   oscillator.frequency.value = 45
-//   oscillator.connect(ampnoise).connect(context.destination)
-//   oscillator.start()
-// }

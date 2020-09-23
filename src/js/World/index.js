@@ -19,7 +19,7 @@ export default class{
     this.container = new THREE.Object3D()
     this.container.matrixAutoUpdate = false
 
-    this.setSounds()
+    document.querySelector('#beginButton').addEventListener('click', this.setSounds())
     this.setBubbles()
     this.setSkybox()
     this.setHUD()
