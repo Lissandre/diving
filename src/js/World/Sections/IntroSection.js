@@ -12,6 +12,7 @@ export default class IntroSection{
     this.sIndex = 0
 
     this.startIntro()
+    // this.destroyIntro()
   }
   startIntro(){
     this.startButton.addEventListener('click', () => {

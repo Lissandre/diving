@@ -74,7 +74,7 @@ export default class Sounds
     setInterval(()=>{
       setTimeout(()=>{
         this.exs = this.exhaleSounds[Math.floor(Math.random()*this.exhaleSounds.length)]
-        this.exs.volume = 1.2
+        this.exs.volume = 1
         this.exs.play()
       },
       2000)

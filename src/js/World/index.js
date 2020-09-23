@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import Sounds from './Sounds.js'
 
 import Bubbles from './Particles/Bubbles.js'
+import Fishes from './Particles/Fishes.js'
 
 import IntroSection from './Sections/IntroSection.js'
 import HUDSection from './Sections/HUDSection.js'
@@ -20,7 +21,9 @@ export default class{
     this.container.matrixAutoUpdate = false
 
     document.querySelector('#beginButton').addEventListener('click', this.setSounds())
+
     this.setBubbles()
+    this.setFishes()
     this.setSkybox()
     this.setHUD()
     this.setLight()
@@ -30,6 +33,13 @@ export default class{
     this.sounds = new Sounds({
       camera: this.camera
     })
+  }
+  setFishes(){
+    this.fishes = new Fishes({
+      sizes: this.sizes,
+      time: this.time
+    })
+    this.container.add(this.fishes.container)
   }
   setBubbles(){
     this.bubbles = new Bubbles({

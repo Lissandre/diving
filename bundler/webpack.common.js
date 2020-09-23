@@ -56,6 +56,19 @@ module.exports = {
                 ]
             },
             {
+              test: /\.(glb|gltf|fbx|obj)$/,
+              use:
+              [
+                  {
+                      loader: 'file-loader',
+                      options:
+                      {
+                          outputPath: 'assets/models/'
+                      }
+                  }
+              ]
+            },
+            {
                 test: /\.html$/,
                 use:
                 [

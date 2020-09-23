@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-// import {OrbitControls} from '../../node_modules/three/examples/jsm/controls/OrbitControls'
+import {OrbitControls} from '../../node_modules/three/examples/jsm/controls/OrbitControls'
 import { gsap, TweenMax } from 'gsap'
 
 export default class Camera
@@ -7,6 +7,7 @@ export default class Camera
   constructor(_options){
     // Options
     this.sizes = _options.sizes
+    this.renderer = _options.renderer
 
     // Set up
     this.container = new THREE.Object3D()
@@ -64,8 +65,8 @@ export default class Camera
   setOrbitControls(){
     // Set up
     this.orbitControls = new OrbitControls(this.instance, this.renderer.domElement)
-    this.orbitControls.enabled = false
-    this.orbitControls.enableKeys = false
-    this.orbitControls.zoomSpeed = 0.5
+    this.orbitControls.enabled = true
+    this.orbitControls.enableKeys = true
+    this.orbitControls.zoomSpeed = 5
   }
 }
