@@ -1,35 +1,47 @@
 import drownSound from '../../../sounds/smooth_drowning.wav'
 import groanSound from '../../../sounds/groan.wav'
 
-const $intro = document.querySelector('#intro'), $introContent = intro.querySelector('#introSentences'), $startBtn = intro.querySelector('#beginButton')
-const sentences = [
-  'Jé fé la mer lol'
-]
-let sIndex = 0
-function circleTexts() {
-  if (sIndex < sentences.length) {
-      $introContent.innerText = sentences[sIndex]
-      $introContent.style.opacity = 1
-      setTimeout(() => {
-          $introContent.style.opacity = 0
-      }, 1500)
-      sIndex += 1
-  } else {
-      $intro.style.opacity = '0'
-      
-      setTimeout(() => {
-        $intro.style.display = 'none'
-        // clearInterval(interval)
+export default class IntroSection{
+  constructor(_options){
+    // Options
+    // Set up
+    this.introContainer = document.querySelector('#intro')
+    this.introContent = this.introContainer.querySelector('#introSentences')
+    this.startButton = this.introContainer.querySelector('#beginButton')
+    this.sentences = ['Jé fé la mer lol', 'Pose toi la zone', 'Un max de détente bb']
+    this.sIndex = 0
+
+    this.startIntro()
+  }
+  startIntro(){
+    this.startButton.addEventListener('click', () => {
+      this.startButton.style.display = 'none'
+      this.interval = setInterval(() => this.changeText(), 2500)
+      this.changeText()
+      this.drownsound = new Audio(drownSound)
+      setTimeout(() => {this.drownsound.play()}, 1465)
+      this.groansound = new Audio(groanSound)
+      setTimeout(() => {this.groansound.play()}, 4700)
+    })
+  }
+  destroyIntro(){
+    this.introContainer.style.opacity = '0'
+    setTimeout(() => {
+      this.introContainer.style.display = 'none'
+      clearInterval(this.interval)
     }, 500)
   }
+  changeText(){
+    if (this.sIndex < this.sentences.length) {
+      this.introContent.innerText = this.sentences[this.sIndex]
+      this.introContent.style.opacity = 1
+      setTimeout(() => {
+          this.introContent.style.opacity = 0
+      }, 1500)
+      this.sIndex += 1
+    }
+    else{
+      this.destroyIntro()
+    }
+  }
 }
-let interval = null
-$startBtn.addEventListener('click', () => {
-    $startBtn.style.display = 'none'
-    interval = setInterval(() => circleTexts(), 2500)
-    circleTexts()
-    let drownsound = new Audio(drownSound)
-    setTimeout(() => {drownsound.play()}, 1465)
-    let groansound = new Audio(groanSound)
-    setTimeout(() => {groansound.play()}, 4700)
-})

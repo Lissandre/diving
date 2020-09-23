@@ -40,7 +40,7 @@ export default class Application
     // Resize event
     this.sizes.on('resize', () =>
     {
-      this.renderer.setSize(this.sizes.viewport.width, this.sizesviewport.height)
+      this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
     })
 
     this.time.on('tick', () =>

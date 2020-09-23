@@ -1,8 +1,11 @@
 import * as THREE from 'three'
 
 import Sounds from './Sounds.js'
+
 import Bubbles from './Particles/Bubbles.js'
-// import IntroSection from './Sections/IntroSection.js'
+
+import IntroSection from './Sections/IntroSection.js'
+import HUDSection from './Sections/HUDSection.js'
 
 export default class{
   constructor(_options){
@@ -19,6 +22,7 @@ export default class{
     this.setSounds()
     this.setBubbles()
     this.setSkybox()
+    this.setHUD()
     this.setLight()
     this.setIntro()
   }
@@ -46,12 +50,18 @@ export default class{
     this.skybox.receiveShadow = true
     this.container.add(this.skybox)
   }
+  setHUD(){
+    this.hud = new HUDSection({
+      camera: this.camera,
+      time: this.time
+    })
+  }
   setLight(){
     this.light = new THREE.PointLight( 0xfffffff, 1.8, 4000 )
     this.light.position.set(0, 300, 0)
     this.container.add(this.light)
   }
   setIntro(){
-    console.log('intro')
+    this.intro = new IntroSection()
   }
 }
