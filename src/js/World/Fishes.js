@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { gsap, TweenMax } from 'gsap'
 
-import Fish from '../../../textures/Rudd_Fish.glb'
+import Fish from '../../textures/Rudd_Fish.glb'
 
 export default class Fishes{
   constructor(_options){
@@ -17,10 +17,11 @@ export default class Fishes{
     this.loader = new GLTFLoader()
     this.posMax = [-400, 400]
 
-    for (let i = 0; i < 2000; i++) {
+    for (let i = 0; i < 1500; i++) {
       this.setFishes()
     }
     this.setMovement()
+    setInterval(()=>{this.setAnimation()}, 400)
   }
   setFishes(border){
     this.loader.load(Fish, (gltf) => {
@@ -57,5 +58,8 @@ export default class Fishes{
         }
       })
     })
+  }
+  setAnimation(){
+    
   }
 }

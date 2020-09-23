@@ -1,9 +1,11 @@
 import * as THREE from 'three'
 
 import Sounds from './Sounds.js'
+import Fishes from './Fishes.js'
+import Whale from './Whale.js'
+import Dolphins from './Dolphins.js'
 
 import Bubbles from './Particles/Bubbles.js'
-import Fishes from './Particles/Fishes.js'
 
 import IntroSection from './Sections/IntroSection.js'
 import HUDSection from './Sections/HUDSection.js'
@@ -24,6 +26,8 @@ export default class{
 
     this.setBubbles()
     this.setFishes()
+    this.setWhale()
+    this.setDolphins()
     this.setSkybox()
     this.setHUD()
     this.setLight()
@@ -33,6 +37,20 @@ export default class{
     this.sounds = new Sounds({
       camera: this.camera
     })
+  }
+  setWhale(){
+    this.whale = new Whale({
+      sizes: this.sizes,
+      time: this.time
+    })
+    this.container.add(this.whale.container)
+  }
+  setDolphins(){
+    this.dolphins = new Dolphins({
+      sizes: this.sizes,
+      time: this.time
+    })
+    this.container.add(this.dolphins.container)
   }
   setFishes(){
     this.fishes = new Fishes({

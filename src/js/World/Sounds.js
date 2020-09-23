@@ -1,4 +1,4 @@
-import Whale from '../../sounds/whale.wav'
+import WhaleSound from '../../sounds/whale.wav'
 import Exhale00 from '../../sounds/exhale/exhale00.mp3'
 import Exhale01 from '../../sounds/exhale/exhale01.mp3'
 import Exhale02 from '../../sounds/exhale/exhale02.mp3'
@@ -54,7 +54,7 @@ export default class Sounds
     )
   }
   setWhaleSound(){
-    this.whalesound = new Audio(Whale)
+    this.whalesound = new Audio(WhaleSound)
     setTimeout(()=>{
         this.whalesound.play()
         this.setWhaleSound()
