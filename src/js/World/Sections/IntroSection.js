@@ -8,7 +8,7 @@ export default class IntroSection{
     this.introContainer = document.querySelector('#intro')
     this.introContent = this.introContainer.querySelector('#introSentences')
     this.startButton = this.introContainer.querySelector('#beginButton')
-    this.sentences = ['Jé fé la mer lol', 'Pose toi la zone', 'Un max de détente bb']
+    this.sentences = ['Controle ta respiration', 'Détends-toi', 'Écoute le calme des océans']
     this.sIndex = 0
 
     this.startIntro()
