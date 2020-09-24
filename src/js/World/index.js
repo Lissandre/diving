@@ -22,8 +22,7 @@ export default class{
     this.container = new THREE.Object3D()
     this.container.matrixAutoUpdate = false
 
-    document.querySelector('#beginButton').addEventListener('click', this.setSounds())
-
+    this.setSounds()
     this.setBubbles()
     this.setFishes()
     this.setWhale()
@@ -34,8 +33,10 @@ export default class{
     this.setIntro()
   }
   setSounds(){
-    this.sounds = new Sounds({
-      camera: this.camera
+    document.querySelector('#beginButton').addEventListener('click', () =>{
+      this.sounds = new Sounds({
+        camera: this.camera
+      })
     })
   }
   setWhale(){
