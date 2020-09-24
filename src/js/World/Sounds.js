@@ -92,3 +92,5 @@ export default class Sounds
     }
   }
 }
+
+//brown noise *2 + bass freq
