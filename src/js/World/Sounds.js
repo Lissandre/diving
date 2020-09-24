@@ -67,14 +67,14 @@ export default class Sounds
     this.exhaleSounds = [ new Audio(Exhale00), new Audio(Exhale01), new Audio(Exhale02), new Audio(Exhale03), new Audio(Exhale04), new Audio(Exhale05), new Audio(Exhale06), new Audio(Exhale07), new Audio(Exhale08), new Audio(Exhale09), new Audio(Exhale10) ]
     setInterval(()=>{
       this.ins = this.inhaleSounds[Math.floor(Math.random()*this.inhaleSounds.length)]
-      this.ins.volume = 0.2
+      this.ins.volume = 0.1
       this.ins.play()
     },
     6000)
     setInterval(()=>{
       setTimeout(()=>{
         this.exs = this.exhaleSounds[Math.floor(Math.random()*this.exhaleSounds.length)]
-        this.exs.volume = 1
+        this.exs.volume = 0.8
         this.exs.play()
       },
       2000)

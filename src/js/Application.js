@@ -3,6 +3,8 @@ import * as THREE from 'three'
 import Sizes from './Utils/Sizes.js'
 import World from './World/index.js'
 import Time from './Utils/Time.js'
+import ScreenSaver from './Utils/CanvasSaver.js'
+import Microphone from './Utils/MicrophoneStream.js'
 
 import Camera from './Camera.js'
 
@@ -19,6 +21,8 @@ export default class Application
     this.setRenderer()
     this.setCamera()
     this.setWorld()
+    this.setSaver()
+    this.setMicrophone()
   }
   setRenderer(){
     // Scene
@@ -66,5 +70,19 @@ export default class Application
     })
 
     this.scene.add(this.world.container)
+  }
+  setSaver(){
+    this.saver = new ScreenSaver({
+      canvas: this.$canvas,
+      renderer: this.renderer,
+      camera: this.camera,
+      scene: this.scene
+    })
+  }
+  setMicrophone(){
+    this.microphone = new Microphone({
+      time: this.time,
+      camera: this.camera,
+    })
   }
 }

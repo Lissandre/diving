@@ -15,7 +15,7 @@ canvas
     left 0
     width 100%
     height 100%
-    z-index -1
+    z-index 0
 
 button
   position absolute
@@ -76,3 +76,23 @@ button
   right 20px
   font-family Arial, "Helvetica Neue", Helvetica, sans-serif
   z-index 5
+
+#screenButton
+  background red
+  width 40px
+  height 40px
+  position absolute
+  top 20px
+  right 20px
+  z-index 5
+  border-radius 50%
+  cursor pointer
+  transition transform 0.3s ease
+  &:hover
+    transform scale(0.95)
+
+#mic
+  position absolute
+  top 0
+  left 0
+  z-index 10

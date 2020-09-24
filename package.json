@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "gsap": "^3.5.1",
+    "microphone-stream": "^5.1.0",
     "postprocessing": "^6.17.3"
   }
 }
