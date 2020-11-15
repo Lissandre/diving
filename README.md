@@ -1,12 +1,5 @@
-# Webpack 4
+# Diving experience
 
-A Webpack template featuring SASS, hot reload and build optimizations.
+A school project at Gobelins, wich has to use Web audio API and Canvas, so I decided to make some THREE.js to begin to work with it. It's my first project with it, and the goal is to have an immersive experience of diving, with your vision and sounds. I find all the models online.
+If i have time, I will do some change to make it better.
 
-### To use it
-
-- Install [Node.js](https://nodejs.org/en/)
-- Open the terminal and go to folder
-- Install dependencies using `npm install`(You may need to start with `sudo` on Mac)
-- Start developing with `npm run dev`
-- Build with `npm run build`. Destination files are in `dist/`
-- develop in `src`
